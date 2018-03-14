@@ -107,7 +107,7 @@
 			/* Svg */
 			
 			.svgGraph{
-				width: 100%;
+				width: calc(100% - 500px);
 				height: 100%;
 				left:250px;
 				right:250px;
@@ -193,7 +193,7 @@
 				<button class="demandSupplyButton">Demand and Supply</button>
 				
 				<div class="demandSupplyDropdownContainer">
-					<button href="#">Standard</button>
+					<button onclick="onClickDemandSupplyStandard()">Standard</button>
 					<button href="#">Demand Increase Only</button>
 					<button href="#">Supply Increase Only</button>
 				</div>
@@ -204,8 +204,18 @@
 				
 			</div>
 			
-			<svg class="svgGraph">
-				<line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
+			<svg id="svgGraph" class="svgGraph">
+				<text x="40" y="50" fill="black">Price of tea</text>
+				<text x="750" y="670" fill="black">Quantity of tea</text>
+				
+				<line x1="75" y1="600" x2="600" y2="100" style="stroke:rgb(0,0,0);stroke-width:2" />
+				<line x1="200" y1="600" x2="725" y2="100" style="stroke:rgb(0,0,0);stroke-width:2" />
+				<line x1="75" y1="100" x2="725" y2="600" style="stroke:rgb(0,0,0);stroke-width:2" />
+				
+				<text x="75", y="75" fill="black">DD</text>
+				<text x="600", y="75" fill="black">SS</text>
+				<text x="725", y="75" fill="black">SS</text>
+				
 			</svg>
 			
 			<div class="rightSideNavigationBar">
@@ -248,3 +258,15 @@
 	</script>
 	
 </html>
+
+<script src="SvgGraph.js"></script>
+<script src="SvgGraphDemandSupply.js"></script>
+<script src="SvgGraphItem.js"></script>
+<script src="SvgGraphItemAttributes.js"></script>
+<script src="SvgGraphItemLine.js"></script>
+<script src="SvgGraphItemShape.js"></script>
+<script src="SvgGraphItemArrow.js"></script>
+<script src="SvgGraphItemAxis.js"></script>
+<script src="SvgGraphItemIntersection.js"></script>
+<script src="SvgGraphItemText.js"></script>
+<script src="events.js"></script>
