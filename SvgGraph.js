@@ -2,8 +2,6 @@ function SvgGraph(){
 	
 	var svg = document.getElementById("svgGraph");
 	
-	var itemsArray = [];
-	
 	var backColor = "FFFFFF";
 	
 	this.addItem = function(){
@@ -27,16 +25,36 @@ function SvgGraph(){
 	}
 	
 	this.getWidth = function(){
-		return svg.getBoundingClientRect().width;
+		return window.screen.availWidth - 2 * SIDE_BAR_WIDTH;
 	}
 	
 	this.getHeight = function(){
-		return svg.getBoundingClientRect().height;
+		return window.screen.availHeight - (window.outerHeight - window.innerHeight) - TOP_BAR_HEIGHT;
+	}
+	
+	this.getAllElements = function(){
+		return svg.childNodes;
 	}
 	
 	this.clearGraphSpace = function(){
 		while (svg.firstChild) {
 			svg.removeChild(svg.firstChild);
+		}
+		
+		var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+		rect.setAttribute('x', 0);
+		rect.setAttribute('y', 0);
+		rect.setAttribute('height', this.getHeight());
+		rect.setAttribute('width', this.getWidth());
+		rect.setAttribute('fill', '#ffffff');
+		svg.appendChild(rect);
+	}
+	
+	this.clearRightSideBar = function(){
+		let rightSideBar = document.getElementById("rightSideNavigationBar");
+		
+		while (rightSideBar.firstChild){
+			rightSideBar.removeChild(rightSideBar.firstChild);
 		}
 	}
 

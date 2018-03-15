@@ -10,7 +10,16 @@ function SvgGraphItemLine(svgGraph){
 	this.color = "#000000";
 	this.thickness = 2;
 	this.gradient = 1.0;
-
+	
+	this.dashes = "";
+	
+	this.label = new SvgGraphItemText(svgGraph);
+	this.labelText = "";
+	this.labelTextHorizontalAlignment = 'middle';
+	this.labelTextVerticalAlignment = 'middle';
+	
+	this.type = LineTypeEnum.DEFAULT;
+	
 	this.variablesInputType = {};
 	this.variablesInputType["x1"] = "text";
 	this.variablesInputType["y1"] = "text";
@@ -27,9 +36,14 @@ function SvgGraphItemLine(svgGraph){
 		obj.setAttribute('y1', this.y1);
 		obj.setAttribute('x2', this.x2);
 		obj.setAttribute('y2', this.y2);
-		obj.setAttribute('style', "stroke:" + this.color + ";stroke-width:" + this.thickness);
-		
+		obj.setAttribute('style', "stroke:" + this.color + ";stroke-width:" + this.thickness + ";stroke-dasharray:" + this.dashes);
+		obj.setAttribute('type', this.type);
 		svgGraph.draw(obj);
+		
+		this.label.textT = this.labelText;
+		this.label.x = this.x2 + 10;
+		this.label.y = this.y2;
+		this.label.draw();
 
 	}
 	

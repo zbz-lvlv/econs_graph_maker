@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Econs Graph Maker</title>
+		
 		<style>
 			body { 
 				background-color: #F9FCFF;
@@ -23,6 +24,8 @@
 				float: left;
 				display: block;
 				color: #f2f2f2;
+				background: none;
+				border: none;
 				text-align: center;
 				padding: 14px 16px;
 				text-decoration: none;
@@ -33,6 +36,7 @@
 			.topNavigationBar a:hover {
 				background-color: #dddddd;
 				color: #000000;
+				cursor:pointer;
 			}
 			
 			/* Main container */
@@ -133,7 +137,7 @@
 				flex-direction: column;
 			}
 			
-			.addItems{
+			.demandSupplyAddItems{
 				height:100%;
 				display:flex-basis: 100%;
 				background-color: #dddddd;
@@ -142,16 +146,7 @@
 				border-bottom-color: #777777;
 			}
 			
-			.itemAttributes{
-				height:100%;
-				display:flex-basis: 100%;
-				background-color: #dddddd;
-				border-top-style: solid;
-				border-top-width: 1px 0;
-				border-top-color: #777777;
-			}
-			
-			.addItems button {
+			.demandSupplyAddItems button {
 			    padding: 6px 8px 6px 16px;
 				margin-top: 4px;
 				margin-bottom: 2px;
@@ -168,8 +163,32 @@
 			    outline: none;
 			}
 			
-			.addItems button:hover {
+			.demandSupplyAddItems button:hover {
 			    color: #888888;
+			}
+			
+			.svgGraphAttributeTemplate, svgGraphItemLineAttributeTemplate{
+				height:100%;
+				display:flex-basis: 100%;
+				background-color: #dddddd;
+				border-top-style: solid;
+				border-top-width: 1px 0;
+				border-top-color: #777777;
+			}
+			
+			table {
+				font-family: Verdana, sans-serif;
+				border-collapse: collapse;
+				width: 100%;
+				display:flex;
+			}
+
+			td, th {
+				text-align: left;
+				padding-left: 8px;
+				display:flex-basis: 100%;
+				width: 1%;
+				font-size: 14px;
 			}
 		
 		</style>
@@ -180,15 +199,15 @@
 		<div class="topNavigationBar" id="topNavigationBar">
 			<a href="#econsGraphGenerator" class="topBarEconsGraphGenerator">Econs Graph Maker</a>
 			<a href="#save" class="topBarSave">Save</a>
-			<a href="#export" class="topBarExport">Export</a>
+			<a href="" download="graph.png" onclick="onClickExport(this)" class="topBarExport">Export</a>
 			<a href="#about" style="float:right" class="topBarAbout">About</a>
 			<a href="#feedback" style="float:right" class="topBarAbout">Feedback</a>
-			<!-- <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a> -->
+
 		</div>
 			
 		<div class="mainContainer">
 			
-			<div class="leftSideNavigationBar">
+			<div id="leftSideNavigationBar" class="leftSideNavigationBar">
 				
 				<button class="demandSupplyButton">Demand and Supply</button>
 				
@@ -205,33 +224,47 @@
 			</div>
 			
 			<svg id="svgGraph" class="svgGraph">
-				<text x="40" y="50" fill="black">Price of tea</text>
-				<text x="750" y="670" fill="black">Quantity of tea</text>
-				
-				<line x1="75" y1="600" x2="600" y2="100" style="stroke:rgb(0,0,0);stroke-width:2" />
-				<line x1="200" y1="600" x2="725" y2="100" style="stroke:rgb(0,0,0);stroke-width:2" />
-				<line x1="75" y1="100" x2="725" y2="600" style="stroke:rgb(0,0,0);stroke-width:2" />
-				
-				<text x="75", y="75" fill="black">DD</text>
-				<text x="600", y="75" fill="black">SS</text>
-				<text x="725", y="75" fill="black">SS</text>
 				
 			</svg>
 			
-			<div class="rightSideNavigationBar">
-				
-				<div class="addItems">
-					<button href="#">Add Line</button>
-					<button href="#">Add Label</button>
-				</div>
-				
-				<div class="itemAttributes">
-					<a> Attributes </a>
-				</div>
+			<div id="rightSideNavigationBar" class="rightSideNavigationBar">
 				
 			</div>
 
 		</div>
+		
+		<template id="demandSupplyAddItemsTemplate">
+		
+			<div class="demandSupplyAddItems">
+				<button href="#">Add Demand Line</button>
+				<button href="#">Add Supply Line</button>
+				<button href="#">Add Label</button>
+				<button href="#">Add Arrow</button>
+			</div>
+		
+		</template>
+		
+		<template id="svgGraphAttributeTemplate">
+		
+			<div class="svgGraphAttributeTemplate">
+				<table>
+				    <tr>
+						<td><p>Background</p></td>
+						<td><input type="color" value="#ffffff"></input></td>
+				    </tr>
+				</table>
+			</div>
+		
+		</template>
+		
+		<template id="svgGraphItemLineAttributeTemplate">
+		
+			<div class="svgGraphItemLineAttribute">
+				<button href="#">Thickness</button>
+				<button href="#">Slope</button>
+			</div>
+		
+		</template>
 			
 	</body>
 	
@@ -259,6 +292,13 @@
 	
 </html>
 
+<script src="jquery-3.3.1.js"></script>
+
+<script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script> 
+<script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
+<script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script> 
+
+<script src="macros.js"></script>
 <script src="SvgGraph.js"></script>
 <script src="SvgGraphDemandSupply.js"></script>
 <script src="SvgGraphItem.js"></script>
@@ -267,6 +307,5 @@
 <script src="SvgGraphItemShape.js"></script>
 <script src="SvgGraphItemArrow.js"></script>
 <script src="SvgGraphItemAxis.js"></script>
-<script src="SvgGraphItemIntersection.js"></script>
 <script src="SvgGraphItemText.js"></script>
 <script src="events.js"></script>

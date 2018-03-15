@@ -3,9 +3,11 @@ function SvgGraphItemText(svgGraph){
 	SvgGraphItem.call(this);
 
 	this.textT = "";
-	this.fontSizeT = 17;
+	this.fontSizeT = 21;
 	this.fontFamilyT = 'Verdana'
 	this.fontColorT = '#000000'
+	this.horizontalAlignment = 'start';
+	this.verticalAlignment = 'middle';
 
 	this.x = 0;
 	this.y = 0;
@@ -15,8 +17,9 @@ function SvgGraphItemText(svgGraph){
 	    var svgText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
 	    svgText.setAttribute('x', this.x);      
 	    svgText.setAttribute('y', this.y);   
-		svgText.setAttribute('fill', this.fontColorT);
-		svgText.setAttribute('text-anchor', 'middle');
+		svgText.setAttribute('text-anchor', this.horizontalAlignment);
+		svgText.setAttribute('alignment-baseline', this.verticalAlignment);
+		svgText.setAttribute('style', "fill: " + this.fontColorT + "; font-size: " + this.fontSizeT + "; font-family: " + this.fontFamilyT);
 		svgText.textContent = this.textT;
 		
 		svgGraph.draw(svgText);

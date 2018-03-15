@@ -23,7 +23,6 @@ function SvgGraphItemAxis(svgGraph){
 	this.yAxisLabel = new SvgGraphItemText(svgGraph);
 	
 	this.variablesInputType = {};
-	this.variablesInputType["margin"] = "text";
 	this.variablesInputType["color"] = "text";
 	this.variablesInputType["thickness"] = "text";
 	this.variablesInputType["arrowSize"] = "text";
@@ -35,6 +34,7 @@ function SvgGraphItemAxis(svgGraph){
 		xAxis.setAttribute('y1', this.xAxisY);
 		xAxis.setAttribute('x2', this.xAxisX2);
 		xAxis.setAttribute('y2', this.xAxisY);
+		xAxis.setAttribute('type', LineTypeEnum.AXIS);
 		xAxis.setAttribute('style', "stroke:" + this.color + ";stroke-width:" + this.thickness);
 		svgGraph.draw(xAxis);
 		
@@ -43,6 +43,7 @@ function SvgGraphItemAxis(svgGraph){
 		xAxisArrowHead0.setAttribute('y1', this.xAxisY);
 		xAxisArrowHead0.setAttribute('x2', this.xAxisX2 - this.arrowSize);
 		xAxisArrowHead0.setAttribute('y2', this.xAxisY - this.arrowSize);
+		xAxisArrowHead0.setAttribute('type', LineTypeEnum.AXIS_ARROW_HEAD);
 		xAxisArrowHead0.setAttribute('style', "stroke:" + this.color + ";stroke-width:" + this.thickness);
 		svgGraph.draw(xAxisArrowHead0);
 		
@@ -51,12 +52,15 @@ function SvgGraphItemAxis(svgGraph){
 		xAxisArrowHead1.setAttribute('y1', this.xAxisY);
 		xAxisArrowHead1.setAttribute('x2', this.xAxisX2 - this.arrowSize);
 		xAxisArrowHead1.setAttribute('y2', this.xAxisY + this.arrowSize);
+		xAxisArrowHead1.setAttribute('type', LineTypeEnum.AXIS_ARROW_HEAD);
 		xAxisArrowHead1.setAttribute('style', "stroke:" + this.color + ";stroke-width:" + this.thickness);
 		svgGraph.draw(xAxisArrowHead1);
 		
 		this.xAxisLabel.textT = this.xAxisText;
-		this.xAxisLabel.x = this.xAxisX2 - (this.margin * 1.5);
+		this.xAxisLabel.x = this.xAxisX2 - (this.margin * 6);
 		this.xAxisLabel.y = this.xAxisY + (this.margin / 2);
+		this.xAxisLabel.horizontalAlignment = 'start'
+		this.xAxisLabel.verticalAlignment = 'middle'
 		this.xAxisLabel.draw();
 		
 		var yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -64,6 +68,7 @@ function SvgGraphItemAxis(svgGraph){
 		yAxis.setAttribute('y1', this.yAxisY1);
 		yAxis.setAttribute('x2', this.yAxisX);
 		yAxis.setAttribute('y2', this.yAxisY2);
+		yAxis.setAttribute('type', LineTypeEnum.AXIS);
 		yAxis.setAttribute('style', "stroke:" + this.color + ";stroke-width:" + this.thickness);
 		svgGraph.draw(yAxis);
 		
@@ -72,6 +77,7 @@ function SvgGraphItemAxis(svgGraph){
 		yAxisArrowHead0.setAttribute('y1', this.yAxisY1);
 		yAxisArrowHead0.setAttribute('x2', this.yAxisX - this.arrowSize);
 		yAxisArrowHead0.setAttribute('y2', this.yAxisY1 + this.arrowSize);
+		yAxisArrowHead0.setAttribute('type', LineTypeEnum.AXIS_ARROW_HEAD);
 		yAxisArrowHead0.setAttribute('style', "stroke:" + this.color + ";stroke-width:" + this.thickness);
 		svgGraph.draw(yAxisArrowHead0);
 		
@@ -80,12 +86,15 @@ function SvgGraphItemAxis(svgGraph){
 		yAxisArrowHead1.setAttribute('y1', this.yAxisY1);
 		yAxisArrowHead1.setAttribute('x2', this.yAxisX + this.arrowSize);
 		yAxisArrowHead1.setAttribute('y2', this.yAxisY1 + this.arrowSize);
+		yAxisArrowHead1.setAttribute('type', LineTypeEnum.AXIS_ARROW_HEAD);
 		yAxisArrowHead1.setAttribute('style', "stroke:" + this.color + ";stroke-width:" + this.thickness);
 		svgGraph.draw(yAxisArrowHead1);
 		
-		this.yAxisLabel.x = this.yAxisX;
+		this.yAxisLabel.x = this.yAxisX - (this.margin / 2);
 		this.yAxisLabel.y = this.yAxisY1 - (this.margin / 2);
 		this.yAxisLabel.textT = this.yAxisText;
+		this.yAxisLabel.horizontalAlignment = 'start'
+		this.yAxisLabel.verticalAlignment = 'middle'
 		this.yAxisLabel.draw();
 
 	}
