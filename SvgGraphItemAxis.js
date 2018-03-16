@@ -61,6 +61,7 @@ function SvgGraphItemAxis(svgGraph){
 		this.xAxisLabel.y = this.xAxisY + (this.margin / 2);
 		this.xAxisLabel.horizontalAlignment = 'start'
 		this.xAxisLabel.verticalAlignment = 'middle'
+		this.xAxisLabel.type = LabelTypeEnum.AXIS;
 		this.xAxisLabel.draw();
 		
 		var yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -95,6 +96,7 @@ function SvgGraphItemAxis(svgGraph){
 		this.yAxisLabel.textT = this.yAxisText;
 		this.yAxisLabel.horizontalAlignment = 'start'
 		this.yAxisLabel.verticalAlignment = 'middle'
+		this.yAxisLabel.type = LabelTypeEnum.AXIS;
 		this.yAxisLabel.draw();
 
 	}

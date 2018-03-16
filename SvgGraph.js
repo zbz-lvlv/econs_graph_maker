@@ -1,8 +1,6 @@
 function SvgGraph(){
 	
-	var svg = document.getElementById("svgGraph");
-	
-	var backColor = "FFFFFF";
+	this.svg = document.getElementById("svgGraph");
 	
 	this.addItem = function(){
 	
@@ -17,7 +15,7 @@ function SvgGraph(){
 	}
 	
 	this.draw = function(objToBeDrawn){
-		svg.appendChild(objToBeDrawn);
+		this.svg.appendChild(objToBeDrawn);
 	}
 	
 	this.refresh = function(){
@@ -33,12 +31,12 @@ function SvgGraph(){
 	}
 	
 	this.getAllElements = function(){
-		return svg.childNodes;
+		return this.svg.childNodes;
 	}
 	
 	this.clearGraphSpace = function(){
-		while (svg.firstChild) {
-			svg.removeChild(svg.firstChild);
+		while (this.svg.firstChild) {
+			this.svg.removeChild(this.svg.firstChild);
 		}
 		
 		var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
@@ -47,14 +45,20 @@ function SvgGraph(){
 		rect.setAttribute('height', this.getHeight());
 		rect.setAttribute('width', this.getWidth());
 		rect.setAttribute('fill', '#ffffff');
-		svg.appendChild(rect);
+		this.svg.appendChild(rect);
 	}
 	
 	this.clearRightSideBar = function(){
-		let rightSideBar = document.getElementById("rightSideNavigationBar");
+		let rightSideBarTop = document.getElementById("rightSideNavigationBarTop");
 		
-		while (rightSideBar.firstChild){
-			rightSideBar.removeChild(rightSideBar.firstChild);
+		while (rightSideBarTop.firstChild){
+			rightSideBarTop.removeChild(rightSideBarTop.firstChild);
+		}
+		
+		let rightSideBarBottom = document.getElementById("rightSideNavigationBarBottom");
+		
+		while (rightSideBarBottom.firstChild){
+			rightSideBarBottom.removeChild(rightSideBarBottom.firstChild);
 		}
 	}
 

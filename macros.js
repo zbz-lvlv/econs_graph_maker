@@ -10,3 +10,11 @@ let LineTypeEnum = {
 	X_LABEL: "X_LABEL", //For lines pointing to a label on the x-axis
 	Y_LABEL: "Y_LABEL", //For lines pointing to a label on the y-axis
 };
+
+let LabelTypeEnum = {
+	DEFAULT: "DEFAULT",
+	AXIS: "AXIS",
+	LINE: "LINE",
+	VALUE: "VALUE",
+	CUSTOM: "CUSTOM",
+}

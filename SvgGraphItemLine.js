@@ -2,10 +2,10 @@ function SvgGraphItemLine(svgGraph){
 		
 	SvgGraphItem.call(this);
 	
-	this.x1 = 200;
-	this.y1 = 200;
-	this.x2 = 400;
-	this.y2 = 200;
+	this.x1 = 0;
+	this.y1 = 0;
+	this.x2 = 0;
+	this.y2 = 0;
 
 	this.color = "#000000";
 	this.thickness = 2;
@@ -16,7 +16,8 @@ function SvgGraphItemLine(svgGraph){
 	this.label = new SvgGraphItemText(svgGraph);
 	this.labelText = "";
 	this.labelTextHorizontalAlignment = 'middle';
-	this.labelTextVerticalAlignment = 'middle';
+	this.labelTextVerticalAlignment = 'hanging';
+	this.labelPosition = 0; //1: Below, -1: Above
 	
 	this.type = LineTypeEnum.DEFAULT;
 	
@@ -41,8 +42,11 @@ function SvgGraphItemLine(svgGraph){
 		svgGraph.draw(obj);
 		
 		this.label.textT = this.labelText;
-		this.label.x = this.x2 + 10;
-		this.label.y = this.y2;
+		this.label.x = this.x2;
+		this.label.y = this.y2 + 5 * this.labelPosition;
+		this.label.horizontalAlignment = this.labelTextHorizontalAlignment;
+		this.label.verticalAlignment = this.labelTextVerticalAlignment;
+		this.label.type = LabelTypeEnum.LINE;
 		this.label.draw();
 
 	}
