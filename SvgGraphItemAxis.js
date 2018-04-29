@@ -1,6 +1,4 @@
 function SvgGraphItemAxis(svgGraph){
-		
-	SvgGraphItem.call(this);
 	
 	this.margin = 50;
 	this.arrowSize = 5;

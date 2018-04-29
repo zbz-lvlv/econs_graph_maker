@@ -189,15 +189,15 @@
 			table {
 				font-family: Verdana, sans-serif;
 				border-collapse: collapse;
+                table-layout: fixed;
 				width: 100%;
-				display:flex;
+				display: flex;
 			}
 
 			td, th {
 				text-align: left;
 				padding-left: 8px;
-				display:flex-basis: 100%;
-				width: 1%;
+				width: 50%;
 				font-size: 14px;
 			}
 		
@@ -223,13 +223,13 @@
 				
 				<div class="demandSupplyDropdownContainer">
 					<button onclick="onClickDemandSupplyStandard()">Standard</button>
-					<button href="#">Demand Increase Only</button>
-					<button href="#">Supply Increase Only</button>
+					<button href="#">Demand Increase Only(Coming soon)</button>
+					<button href="#">Supply Increase Only(Coming soon)</button>
 				</div>
 				
-				<button class="marketFailureButton">Market Failure</button>
+				<button class="marketFailureButton">Market Failure(Coming soon)</button>
 				
-				<button class="adAsButton">Aggregate Demand-Aggregate Supply</button>
+				<button class="adAsButton">Aggregate Demand-Aggregate Supply(Coming soon)</button>
 				
 			</div>
 			
@@ -278,8 +278,19 @@
 		<template id="svgGraphItemLineAttributeTemplate">
 		
 			<div class="svgGraphItemLineAttribute">
-				<button href="#">Thickness</button>
-				<button href="#">Slope</button>
+                <table>
+                    <tr>
+                        <td><p>Weight</p></td>
+                        <td><input id="svgGraphItemLineAttributeInputThickness"></input></td>
+                    </tr>
+                    <tr>
+                        <td><p>Color</p></td>
+                        <td><input type="color" value="#ffffff"></input></td>
+                    </tr>
+                </table>
+
+
+
 			</div>
 		
 		</template>

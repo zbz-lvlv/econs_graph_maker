@@ -17,6 +17,18 @@ function onClickSvgGraphItemText(textClickedOn){
 	
 }
 
+function onClickSvgGraphItemLine(lineClickedOn) {
+
+    var attributesTemplate = document.getElementById('svgGraphItemLineAttributeTemplate');
+    var navBarBottom = document.getElementById('rightSideNavigationBarBottom');
+
+    while (navBarBottom.firstChild) {
+        navBarBottom.removeChild(navBarBottom.firstChild);
+    }
+    navBarBottom.appendChild(attributesTemplate.content.cloneNode(true));
+
+}
+
 function onClickExport(linkExport){
 	
 	//Load a svg snippet in the canvas with id = 'svgGraph'

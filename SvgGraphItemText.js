@@ -1,7 +1,5 @@
 function SvgGraphItemText(svgGraph){
 
-	SvgGraphItem.call(this);
-
 	this.textT = "";
 	this.fontSizeT = 21;
 	this.fontFamilyT = 'Verdana'
